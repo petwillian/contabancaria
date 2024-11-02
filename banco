@@ -1,0 +1,45 @@
+class ContaBancaria:
+    def __init__(self, saldo_inicial=0):
+        self.saldo = saldo_inicial
+
+    def sacar(self, valor):
+        if valor > self.saldo:
+            print("Erro: Saldo insuficiente para realizar o saque.")
+        else:
+            self.saldo -= valor
+            print(f"Saque de R${valor:.2f} realizado com sucesso.")
+            print(f"Saldo atual: R${self.saldo:.2f}")
+
+    def depositar(self, valor):
+        self.saldo += valor
+        print(f"Depósito de R${valor:.2f} realizado com sucesso.")
+        print(f"Saldo atual: R${self.saldo:.2f}")
+
+def main():
+    conta = ContaBancaria(100)  # Criando uma conta com saldo inicial de R$100
+
+    while True:
+        print("\nEscolha uma opção:")
+        print("1. Sacar")
+        print("2. Depositar")
+        print("3. Consultar Saldo")
+        print("4. Sair")
+
+        opcao = input("Digite o número da opção desejada: ")
+
+        if opcao == '1':
+            valor_saque = float(input("Digite o valor a ser sacado: R$"))
+            conta.sacar(valor_saque)
+        elif opcao == '2':
+            valor_deposito = float(input("Digite o valor a ser depositado: R$"))
+            conta.depositar(valor_deposito)
+        elif opcao == '3':
+            print(f"Saldo atual: R${conta.saldo:.2f}")
+        elif opcao == '4':
+            print("Saindo do sistema...")
+            break
+        else:
+            print("Opção inválida. Tente novamente.")
+
+if __name__ == "__main__":
+    main()
